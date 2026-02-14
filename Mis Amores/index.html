@@ -230,4 +230,16 @@ setInterval(lluvia,400);
 
 function crearParticula(){
     let p=document.createElement("div");
-    p.class
+    p.className="particle";
+    let colors=["#4b0082","#8b0000","#ffffff"];
+    p.style.background=colors[Math.floor(Math.random()*colors.length)];
+    p.style.left=Math.random()*window.innerWidth+"px";
+    p.style.animationDuration=(7+Math.random()*6)+"s";
+    document.body.appendChild(p);
+    setTimeout(()=>p.remove(),12000);
+}
+setInterval(crearParticula,250);
+</script>
+
+</body>
+</html>
