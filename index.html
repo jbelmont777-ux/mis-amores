@@ -18,24 +18,34 @@ body{
     text-align:center;
 
     background:
-    radial-gradient(circle at 20% 20%, rgba(75,0,130,0.4), transparent 60%),
-    radial-gradient(circle at 80% 80%, rgba(139,0,0,0.4), transparent 60%),
-    repeating-linear-gradient(
-        90deg,
-        rgba(20,0,20,0.9) 0px,
-        rgba(20,0,20,0.9) 50px,
-        rgba(0,0,0,1) 50px,
-        rgba(0,0,0,1) 100px
-    ),
-    #000;
+    radial-gradient(circle at 20% 20%, rgba(123,0,255,0.35), transparent 60%),
+    radial-gradient(circle at 80% 80%, rgba(255,0,90,0.25), transparent 60%),
+    linear-gradient(135deg,#0a0015,#1a002a,#000000);
 }
 
 /* Título */
 .title{
     font-size:clamp(40px,6vw,70px);
-    color:#e6d6ff;
-    text-shadow:0 0 15px #800080, 0 0 40px #8b0000;
+    color:#f3e6ff;
+    text-shadow:0 0 20px #800080, 0 0 40px #ff0055;
     margin:20px 0;
+}
+
+/* ICONOS CORAZONES SUPERIORES */
+.roses{
+    display:flex;
+    gap:60px;
+    margin:20px 0;
+}
+
+.rose{
+    font-size:70px;
+    animation: flotar 6s ease-in-out infinite;
+}
+
+@keyframes flotar{
+    0%,100%{ transform:translateY(0);}
+    50%{ transform:translateY(-20px);}
 }
 
 /* CONTENEDOR CENTRAL */
@@ -54,8 +64,8 @@ body{
     height:340px;
     border-radius:20px;
     overflow:hidden;
-    border:3px solid #4b0082;
-    box-shadow:0 0 25px #800080, 0 0 50px #8b0000;
+    border:3px solid #800080;
+    box-shadow:0 0 25px #800080, 0 0 50px #ff0055;
     transition:0.4s;
 }
 
@@ -63,19 +73,19 @@ body{
     width:100%;
     height:100%;
     object-fit:cover;
-    filter:brightness(0.85) contrast(1.1);
+    filter:brightness(0.9) contrast(1.1);
 }
 
 .photo:hover{
     transform:scale(1.05);
-    box-shadow:0 0 35px #ff00ff, 0 0 70px #8b0000;
+    box-shadow:0 0 40px #ff00ff, 0 0 80px #ff0055;
 }
 
 .name{
     margin-top:10px;
     font-size:20px;
-    color:#ffccff;
-    text-shadow:0 0 10px #8b0000;
+    color:#ffd6ff;
+    text-shadow:0 0 10px #ff0055;
 }
 
 /* POEMA */
@@ -83,34 +93,16 @@ body{
     max-width:500px;
     line-height:1.9;
     font-size:clamp(16px,3vw,22px);
-    color:#d8c6ff;
+    color:#e0ccff;
     text-shadow:0 0 10px #8b0000;
-}
-
-/* ROSAS */
-.roses{
-    display:flex;
-    gap:60px;
-    margin:20px 0;
-}
-
-.rose{
-    font-size:80px;
-    filter: grayscale(100%) brightness(25%);
-    animation: flotar 6s ease-in-out infinite;
-}
-
-@keyframes flotar{
-    0%,100%{ transform:translateY(0);}
-    50%{ transform:translateY(-20px);}
 }
 
 /* Pregunta */
 .question{
     margin:20px;
     font-size:clamp(20px,4vw,30px);
-    color:#ffccd5;
-    text-shadow:0 0 15px #8b0000;
+    color:#ffcce6;
+    text-shadow:0 0 15px #ff0055;
     animation: pulse 2s infinite;
 }
 
@@ -136,7 +128,7 @@ body{
     }
 }
 
-/* Corazones */
+/* Corazones lluvia */
 .heart{
     position:fixed;
     top:-20px;
@@ -154,7 +146,7 @@ body{
     width:5px;
     height:5px;
     border-radius:50%;
-    opacity:0.3;
+    opacity:0.4;
     animation: float linear infinite;
 }
 
@@ -167,13 +159,12 @@ body{
 
 <body>
 
-<div class="title">Valeria 🖤 Lucero 🖤 
-Mis Amores </div>
+<div class="title">Valeria 🖤 Lucero 🖤 Mis Amores</div>
 
 <div class="roses">
-    <div class="rose">🌹</div>
-    <div class="rose">🌹</div>
-    <div class="rose">🌹</div>
+    <div class="rose">❤️</div>
+    <div class="rose">🖤</div>
+    <div class="rose">💜</div>
 </div>
 
 <div class="content">
@@ -181,7 +172,7 @@ Mis Amores </div>
     <!-- FOTO IZQUIERDA -->
     <div>
         <div class="photo">
-            <img src="file:///C:/Users/krouc/Downloads/arbol/foto1.jpeg" alt="Valeria">
+            <img src="foto1.jpeg" alt="Valeria">
         </div>
         <div class="name">Valeria</div>
     </div>
@@ -204,7 +195,7 @@ Mis Amores </div>
     <!-- FOTO DERECHA -->
     <div>
         <div class="photo">
-            <img src="file:///C:/Users/krouc/Downloads/arbol/foto2.jpeg" alt="Lucero">
+            <img src="foto2.jpeg" alt="Lucero">
         </div>
         <div class="name">Lucero</div>
     </div>
@@ -220,7 +211,7 @@ function lluvia(){
     let heart=document.createElement("div");
     heart.className="heart";
     heart.innerHTML="❤";
-    let colors=["#000000","#4b0082","#8b0000"];
+    let colors=["#000000","#800080","#ff0055"];
     heart.style.color=colors[Math.floor(Math.random()*colors.length)];
     heart.style.left=Math.random()*window.innerWidth+"px";
     heart.style.animationDuration=(5+Math.random()*4)+"s";
@@ -232,7 +223,7 @@ setInterval(lluvia,400);
 function crearParticula(){
     let p=document.createElement("div");
     p.className="particle";
-    let colors=["#4b0082","#8b0000","#ffffff"];
+    let colors=["#800080","#ff0055","#ffffff"];
     p.style.background=colors[Math.floor(Math.random()*colors.length)];
     p.style.left=Math.random()*window.innerWidth+"px";
     p.style.animationDuration=(7+Math.random()*6)+"s";
@@ -244,8 +235,6 @@ setInterval(crearParticula,250);
 
 </body>
 </html>
-
-
 
 
 
