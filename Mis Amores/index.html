@@ -167,8 +167,7 @@ body{
 
 <body>
 
-<div class="title">Valeria 🖤 Lucero 🖤 
-Mis Amores </div>
+<div class="title">Valeria 🖤 Lucero 🖤 Mis Amores</div>
 
 <div class="roses">
     <div class="rose">🌹</div>
@@ -181,7 +180,7 @@ Mis Amores </div>
     <!-- FOTO IZQUIERDA -->
     <div>
         <div class="photo">
-            <img src="file:///C:/Users/krouc/Downloads/arbol/foto1.jpeg" alt="Valeria">
+            <img src="foto1.jpeg" alt="Valeria">
         </div>
         <div class="name">Valeria</div>
     </div>
@@ -204,7 +203,7 @@ Mis Amores </div>
     <!-- FOTO DERECHA -->
     <div>
         <div class="photo">
-            <img src="file:///C:/Users/krouc/Downloads/arbol/foto2.jpeg" alt="Lucero">
+            <img src="foto2.jpeg" alt="Lucero">
         </div>
         <div class="name">Lucero</div>
     </div>
@@ -231,17 +230,4 @@ setInterval(lluvia,400);
 
 function crearParticula(){
     let p=document.createElement("div");
-    p.className="particle";
-    let colors=["#4b0082","#8b0000","#ffffff"];
-    p.style.background=colors[Math.floor(Math.random()*colors.length)];
-    p.style.left=Math.random()*window.innerWidth+"px";
-    p.style.animationDuration=(7+Math.random()*6)+"s";
-    document.body.appendChild(p);
-    setTimeout(()=>p.remove(),12000);
-}
-setInterval(crearParticula,250);
-</script>
-
-</body>
-</html>
-
+    p.class
