@@ -1,221 +1,179 @@
-<!DOCTYPE html> 
+<!DOCTYPE html>
 <html lang="es">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Mis Amores</title>
+<title>Oscuridad Eterna</title>
 
 <style>
 body{
     margin:0;
-    min-height:100vh;
-    overflow-x:hidden;
-    display:flex;
-    flex-direction:column;
-    align-items:center;
-    font-family:'Georgia', serif;
-    color:white;
+    padding:0;
+    background: url("fondo.jpg") no-repeat center center fixed;
+    background-size: cover;
+    overflow:hidden;
+    font-family: 'Georgia', serif;
+    color:#fff;
     text-align:center;
-
-    background:
-    radial-gradient(circle at 20% 20%, rgba(123,0,255,0.35), transparent 60%),
-    radial-gradient(circle at 80% 80%, rgba(255,0,90,0.25), transparent 60%),
-    linear-gradient(135deg,#0a0015,#1a002a,#000000);
 }
 
-/* Título */
-.title{
-    font-size:clamp(40px,6vw,70px);
-    color:#f3e6ff;
-    text-shadow:0 0 20px #800080, 0 0 40px #ff0055;
-    margin:20px 0;
+/* CAPA OSCURA ENCIMA DEL FONDO */
+body::before{
+    content:"";
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    background: radial-gradient(circle at center, rgba(40,0,60,0.6), rgba(0,0,0,0.9));
+    z-index:0;
 }
 
-/* BOTÓN MÚSICA */
-#musicBtn{
-    margin-bottom:20px;
-    background:#120018;
-    color:#ffffff;
-    border:2px solid #800080;
-    padding:12px 25px;
-    border-radius:30px;
-    cursor:pointer;
-    font-family:Georgia, serif;
-    font-size:16px;
-    box-shadow:0 0 15px #800080;
-    transition:0.3s;
-}
-
-#musicBtn:hover{
-    background:#800080;
-    box-shadow:0 0 25px #ff0055;
-    transform:scale(1.05);
-}
-
-/* Corazones superiores */
-.roses{
-    display:flex;
-    gap:60px;
-    margin:20px 0;
-}
-
-.rose{
-    font-size:70px;
-    animation: flotar 6s ease-in-out infinite;
-}
-
-@keyframes flotar{
-    0%,100%{ transform:translateY(0);}
-    50%{ transform:translateY(-20px);}
-}
-
-.content{
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    gap:40px;
-    max-width:1200px;
+/* TEXTO */
+.contenido{
+    position:relative;
+    z-index:2;
+    margin-top:10%;
+    font-size:22px;
+    line-height:1.8;
+    text-shadow:0 0 15px #8000ff, 0 0 30px #ff0040;
     padding:20px;
 }
 
-.photo{
-    width:260px;
-    height:340px;
-    border-radius:20px;
-    overflow:hidden;
-    border:3px solid #800080;
-    box-shadow:0 0 25px #800080, 0 0 50px #ff0055;
-    transition:0.4s;
+/* BOTON MUSICA */
+.boton-musica{
+    position:fixed;
+    bottom:20px;
+    left:50%;
+    transform:translateX(-50%);
+    background:#1a001f;
+    border:1px solid #8000ff;
+    color:#fff;
+    padding:12px 25px;
+    cursor:pointer;
+    border-radius:30px;
+    box-shadow:0 0 20px #8000ff;
+    z-index:3;
+    font-size:16px;
 }
 
-.photo img{
-    width:100%;
-    height:100%;
-    object-fit:cover;
+.boton-musica:hover{
+    background:#330033;
 }
 
-.photo:hover{
-    transform:scale(1.05);
+/* PARTICULAS */
+.particula{
+    position:absolute;
+    width:3px;
+    height:3px;
+    background:#a64dff;
+    border-radius:50%;
+    animation:flotar 12s linear infinite;
+    opacity:0.6;
+    z-index:1;
 }
 
-.name{
-    margin-top:10px;
+@keyframes flotar{
+    from{ transform:translateY(100vh); }
+    to{ transform:translateY(-10vh); }
+}
+
+/* CORAZONES */
+.corazon{
+    position:absolute;
+    color:#ff0040;
+    animation:caer 6s linear infinite;
     font-size:20px;
-    color:#ffd6ff;
+    opacity:0.8;
+    z-index:1;
 }
 
-.poem{
-    max-width:500px;
-    line-height:1.9;
-    font-size:clamp(16px,3vw,22px);
-    color:#e0ccff;
+@keyframes caer{
+    from{ transform:translateY(-10vh); }
+    to{ transform:translateY(110vh); }
 }
 
-.question{
-    margin:20px;
-    font-size:clamp(20px,4vw,30px);
-    color:#ffcce6;
-    animation: pulse 2s infinite;
+/* NIEBLA */
+.niebla{
+    position:fixed;
+    width:200%;
+    height:100%;
+    background: url("https://i.imgur.com/8QfQ8bT.png");
+    opacity:0.1;
+    animation:moverNiebla 60s linear infinite;
+    z-index:1;
 }
 
-@keyframes pulse{
-    0%,100%{transform:scale(1);}
-    50%{transform:scale(1.1);}
-}
-
-@media(max-width:900px){
-    .content{
-        flex-direction:column;
-    }
+@keyframes moverNiebla{
+    from{ transform:translateX(0); }
+    to{ transform:translateX(-50%); }
 }
 </style>
 </head>
 
 <body>
 
-<div class="title">Mis Amores</div>
+<div class="niebla"></div>
 
-<!-- BOTÓN -->
-<button onclick="toggleMusic()" id="musicBtn">
-🖤 Activar música
-</button>
+<div class="contenido">
+Entre sombras antiguas y suspiros eternos,<br>
+florecieron dos rosas negras bajo la luna.<br><br>
 
-<!-- AUDIO -->
-<audio id="bgMusic" loop>
+Valeria, luna que arde en mi sangre callada…<br>
+Lucero, estrella oscura que ilumina mi abismo con ternura eterna.<br><br>
+
+No es pecado… es un pacto sellado en la noche,<br>
+dos almas que encendieron mi eternidad<br>
+con fuego morado y rojo profundo.<br><br>
+
+Intenso… inmortal… eterno. 🖤
+</div>
+
+<button class="boton-musica" onclick="toggleMusica()">Reproducir música</button>
+
+<audio id="musica">
     <source src="cancion.mp3" type="audio/mpeg">
 </audio>
 
-<div class="roses">
-    <div class="rose">❤️</div>
-    <div class="rose">🖤</div>
-    <div class="rose">💜</div>
-</div>
-
-<div class="content">
-
-    <div>
-        <div class="photo">
-            <img src="foto1.jpeg" alt="Valeria">
-        </div>
-        <div class="name">Valeria</div>
-    </div>
-
-    <div class="poem">
-    Entre sombras antiguas donde el tiempo se inclina,<br>
-    sus nombres florecieron como un secreto eterno bajo la luna.<br><br>
-
-    Valeria… eclipse suave que domina mi noche,<br>
-    susurro profundo que habita en mi sangre como un destino escrito en tinta negra.<br><br>
-
-    Lucero… luz serena que brilla en mi penumbra,<br>
-    estrella delicada que guía mis pasos entre la oscuridad más dulce.<br><br>
-
-    No fue casualidad… fue un latido compartido en silencio,<br>
-    dos almas que se encontraron en la sombra<br>
-    y encendieron un fuego púrpura y carmesí.<br><br>
-
-    Si amarles es perderme,<br>
-    que me pierda sin miedo en su mirada.<br><br>
-
-    Porque en esta noche eterna,<br>
-    mi corazón no conoce absolución…<br>
-    solo conoce sus nombres,<br>
-    sus risas,<br>
-    y la promesa de un amor oscuro,<br>
-    profundo,<br>
-    inmortal. 🖤
-    </div>
-
-    <div>
-        <div class="photo">
-            <img src="foto2.jpeg" alt="Lucero">
-        </div>
-        <div class="name">Lucero</div>
-    </div>
-
-</div>
-
-<div class="question">
-¿Quieren ser mis San Valentín? ❤️🖤💜
-</div>
-
 <script>
-function toggleMusic(){
-    let music=document.getElementById("bgMusic");
-    let btn=document.getElementById("musicBtn");
+const musica = document.getElementById("musica");
+const boton = document.querySelector(".boton-musica");
 
-    if(music.paused){
-        music.play();
-        btn.innerHTML="💜 Pausar música";
+function toggleMusica(){
+    if(musica.paused){
+        musica.play();
+        boton.innerText="Pausar música";
     }else{
-        music.pause();
-        btn.innerHTML="🖤 Activar música";
+        musica.pause();
+        boton.innerText="Reproducir música";
     }
 }
+
+/* PARTICULAS */
+for(let i=0;i<60;i++){
+    let p=document.createElement("div");
+    p.className="particula";
+    p.style.left=Math.random()*100+"vw";
+    p.style.animationDuration=(6+Math.random()*8)+"s";
+    document.body.appendChild(p);
+}
+
+/* CORAZONES */
+setInterval(()=>{
+    let h=document.createElement("div");
+    h.className="corazon";
+    h.innerHTML="🖤";
+    h.style.left=Math.random()*100+"vw";
+    h.style.animationDuration=(4+Math.random()*4)+"s";
+    document.body.appendChild(h);
+
+    setTimeout(()=>{ h.remove(); },8000);
+},900);
 </script>
 
 </body>
 </html>
+
+
 
 
 
