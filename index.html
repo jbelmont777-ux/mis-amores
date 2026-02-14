@@ -23,6 +23,7 @@ body{
     linear-gradient(135deg,#0a0015,#1a002a,#000000);
 }
 
+/* Título */
 .title{
     font-size:clamp(40px,6vw,70px);
     color:#f3e6ff;
@@ -30,6 +31,28 @@ body{
     margin:20px 0;
 }
 
+/* BOTÓN MÚSICA */
+#musicBtn{
+    margin-bottom:20px;
+    background:#120018;
+    color:#ffffff;
+    border:2px solid #800080;
+    padding:12px 25px;
+    border-radius:30px;
+    cursor:pointer;
+    font-family:Georgia, serif;
+    font-size:16px;
+    box-shadow:0 0 15px #800080;
+    transition:0.3s;
+}
+
+#musicBtn:hover{
+    background:#800080;
+    box-shadow:0 0 25px #ff0055;
+    transform:scale(1.05);
+}
+
+/* Corazones superiores */
 .roses{
     display:flex;
     gap:60px;
@@ -69,19 +92,16 @@ body{
     width:100%;
     height:100%;
     object-fit:cover;
-    filter:brightness(0.9) contrast(1.1);
 }
 
 .photo:hover{
     transform:scale(1.05);
-    box-shadow:0 0 40px #ff00ff, 0 0 80px #ff0055;
 }
 
 .name{
     margin-top:10px;
     font-size:20px;
     color:#ffd6ff;
-    text-shadow:0 0 10px #ff0055;
 }
 
 .poem{
@@ -89,14 +109,12 @@ body{
     line-height:1.9;
     font-size:clamp(16px,3vw,22px);
     color:#e0ccff;
-    text-shadow:0 0 10px #8b0000;
 }
 
 .question{
     margin:20px;
     font-size:clamp(20px,4vw,30px);
     color:#ffcce6;
-    text-shadow:0 0 15px #ff0055;
     animation: pulse 2s infinite;
 }
 
@@ -109,53 +127,23 @@ body{
     .content{
         flex-direction:column;
     }
-
-    .photo{
-        width:80%;
-        max-width:320px;
-        height:auto;
-    }
-
-    .photo img{
-        height:auto;
-    }
-}
-
-.heart{
-    position:fixed;
-    top:-20px;
-    font-size:20px;
-    animation: caer linear infinite;
-}
-
-@keyframes caer{
-    to{ transform:translateY(110vh);}
-}
-
-.particle{
-    position:fixed;
-    width:5px;
-    height:5px;
-    border-radius:50%;
-    opacity:0.4;
-    animation: float linear infinite;
-}
-
-@keyframes float{
-    from{ transform:translateY(100vh);}
-    to{ transform:translateY(-10vh);}
 }
 </style>
 </head>
 
 <body>
 
-<!-- 🎵 Música automática -->
-<audio id="bgMusic" autoplay loop>
+<div class="title">Mis Amores</div>
+
+<!-- BOTÓN -->
+<button onclick="toggleMusic()" id="musicBtn">
+🖤 Activar música
+</button>
+
+<!-- AUDIO -->
+<audio id="bgMusic" loop>
     <source src="cancion.mp3" type="audio/mpeg">
 </audio>
-
-<div class="title">Mis Amores</div>
 
 <div class="roses">
     <div class="rose">❤️</div>
@@ -212,41 +200,23 @@ body{
 </div>
 
 <script>
-// Forzar autoplay en más navegadores
-document.addEventListener("DOMContentLoaded", function(){
-    let music = document.getElementById("bgMusic");
-    music.volume = 0.8;
-    music.play().catch(()=>{});
-});
+function toggleMusic(){
+    let music=document.getElementById("bgMusic");
+    let btn=document.getElementById("musicBtn");
 
-function lluvia(){
-    let heart=document.createElement("div");
-    heart.className="heart";
-    heart.innerHTML="❤";
-    let colors=["#000000","#800080","#ff0055"];
-    heart.style.color=colors[Math.floor(Math.random()*colors.length)];
-    heart.style.left=Math.random()*window.innerWidth+"px";
-    heart.style.animationDuration=(5+Math.random()*4)+"s";
-    document.body.appendChild(heart);
-    setTimeout(()=>heart.remove(),9000);
+    if(music.paused){
+        music.play();
+        btn.innerHTML="💜 Pausar música";
+    }else{
+        music.pause();
+        btn.innerHTML="🖤 Activar música";
+    }
 }
-setInterval(lluvia,400);
-
-function crearParticula(){
-    let p=document.createElement("div");
-    p.className="particle";
-    let colors=["#800080","#ff0055","#ffffff"];
-    p.style.background=colors[Math.floor(Math.random()*colors.length)];
-    p.style.left=Math.random()*window.innerWidth+"px";
-    p.style.animationDuration=(7+Math.random()*6)+"s";
-    document.body.appendChild(p);
-    setTimeout(()=>p.remove(),12000);
-}
-setInterval(crearParticula,250);
 </script>
 
 </body>
 </html>
+
 
 
 
