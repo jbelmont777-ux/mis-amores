@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!DOCTYPE html> 
 <html lang="es">
 <head>
 <meta charset="UTF-8">
@@ -23,7 +23,6 @@ body{
     linear-gradient(135deg,#0a0015,#1a002a,#000000);
 }
 
-/* Título */
 .title{
     font-size:clamp(40px,6vw,70px);
     color:#f3e6ff;
@@ -31,7 +30,6 @@ body{
     margin:20px 0;
 }
 
-/* ICONOS CORAZONES SUPERIORES */
 .roses{
     display:flex;
     gap:60px;
@@ -48,7 +46,6 @@ body{
     50%{ transform:translateY(-20px);}
 }
 
-/* CONTENEDOR CENTRAL */
 .content{
     display:flex;
     align-items:center;
@@ -58,7 +55,6 @@ body{
     padding:20px;
 }
 
-/* FOTOS */
 .photo{
     width:260px;
     height:340px;
@@ -88,7 +84,6 @@ body{
     text-shadow:0 0 10px #ff0055;
 }
 
-/* POEMA */
 .poem{
     max-width:500px;
     line-height:1.9;
@@ -97,7 +92,6 @@ body{
     text-shadow:0 0 10px #8b0000;
 }
 
-/* Pregunta */
 .question{
     margin:20px;
     font-size:clamp(20px,4vw,30px);
@@ -111,7 +105,6 @@ body{
     50%{transform:scale(1.1);}
 }
 
-/* RESPONSIVO */
 @media(max-width:900px){
     .content{
         flex-direction:column;
@@ -128,7 +121,6 @@ body{
     }
 }
 
-/* Corazones lluvia */
 .heart{
     position:fixed;
     top:-20px;
@@ -140,7 +132,6 @@ body{
     to{ transform:translateY(110vh);}
 }
 
-/* Partículas */
 .particle{
     position:fixed;
     width:5px;
@@ -159,6 +150,11 @@ body{
 
 <body>
 
+<!-- 🎵 Música automática -->
+<audio id="bgMusic" autoplay loop>
+    <source src="cancion.mp3" type="audio/mpeg">
+</audio>
+
 <div class="title">Mis Amores</div>
 
 <div class="roses">
@@ -169,7 +165,6 @@ body{
 
 <div class="content">
 
-    <!-- FOTO IZQUIERDA -->
     <div>
         <div class="photo">
             <img src="foto1.jpeg" alt="Valeria">
@@ -177,34 +172,32 @@ body{
         <div class="name">Valeria</div>
     </div>
 
-    <!-- POEMA -->
     <div class="poem">
     Entre sombras antiguas donde el tiempo se inclina,<br>
-sus nombres florecieron como un secreto eterno bajo la luna.<br><br>
+    sus nombres florecieron como un secreto eterno bajo la luna.<br><br>
 
-Valeria… eclipse suave que domina mi noche,<br>
-susurro profundo que habita en mi sangre como un destino escrito en tinta negra.<br><br>
+    Valeria… eclipse suave que domina mi noche,<br>
+    susurro profundo que habita en mi sangre como un destino escrito en tinta negra.<br><br>
 
-Lucero… luz serena que brilla en mi penumbra,<br>
-estrella delicada que guía mis pasos entre la oscuridad más dulce.<br><br>
+    Lucero… luz serena que brilla en mi penumbra,<br>
+    estrella delicada que guía mis pasos entre la oscuridad más dulce.<br><br>
 
-No fue casualidad… fue un latido compartido en silencio,<br>
-dos almas que se encontraron en la sombra<br>
-y encendieron un fuego púrpura y carmesí.<br><br>
+    No fue casualidad… fue un latido compartido en silencio,<br>
+    dos almas que se encontraron en la sombra<br>
+    y encendieron un fuego púrpura y carmesí.<br><br>
 
-Si amarles es perderme,<br>
-que me pierda sin miedo en su mirada.<br><br>
+    Si amarles es perderme,<br>
+    que me pierda sin miedo en su mirada.<br><br>
 
-Porque en esta noche eterna,<br>
-mi corazón no conoce absolución…<br>
-solo conoce sus nombres,<br>
-sus risas,<br>
-y la promesa de un amor oscuro,<br>
-profundo,<br>
-inmortal. 🖤
+    Porque en esta noche eterna,<br>
+    mi corazón no conoce absolución…<br>
+    solo conoce sus nombres,<br>
+    sus risas,<br>
+    y la promesa de un amor oscuro,<br>
+    profundo,<br>
+    inmortal. 🖤
     </div>
 
-    <!-- FOTO DERECHA -->
     <div>
         <div class="photo">
             <img src="foto2.jpeg" alt="Lucero">
@@ -219,6 +212,13 @@ inmortal. 🖤
 </div>
 
 <script>
+// Forzar autoplay en más navegadores
+document.addEventListener("DOMContentLoaded", function(){
+    let music = document.getElementById("bgMusic");
+    music.volume = 0.8;
+    music.play().catch(()=>{});
+});
+
 function lluvia(){
     let heart=document.createElement("div");
     heart.className="heart";
@@ -247,6 +247,7 @@ setInterval(crearParticula,250);
 
 </body>
 </html>
+
 
 
 
