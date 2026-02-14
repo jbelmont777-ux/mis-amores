@@ -8,38 +8,56 @@
 body{
     margin:0;
     padding:0;
-    background: url("fondo.jpg") no-repeat center center fixed;
-    background-size: cover;
     overflow:hidden;
     font-family: 'Georgia', serif;
-    color:#fff;
+    background: radial-gradient(circle at 50% 20%, #2b0033 0%, #0d001a 40%, #000000 80%);
+    color:white;
     text-align:center;
 }
 
-/* CAPA OSCURA ENCIMA DEL FONDO */
-body::before{
-    content:"";
-    position:fixed;
-    top:0;
-    left:0;
-    width:100%;
-    height:100%;
-    background: radial-gradient(circle at center, rgba(40,0,60,0.6), rgba(0,0,0,0.9));
+/* LUNA */
+.luna{
+    position:absolute;
+    top:60px;
+    left:50%;
+    transform:translateX(-50%);
+    width:180px;
+    height:180px;
+    background:radial-gradient(circle, #fff 40%, #ccc 60%, transparent 70%);
+    border-radius:50%;
+    box-shadow:0 0 60px #ffffffaa;
     z-index:0;
+}
+
+/* SILUETA CASTILLO */
+.castillo{
+    position:absolute;
+    bottom:0;
+    width:100%;
+    height:200px;
+    background:linear-gradient(to top, #000 60%, transparent);
+    clip-path: polygon(
+        0% 100%, 0% 70%, 5% 70%, 8% 60%, 10% 70%, 
+        15% 70%, 18% 50%, 20% 70%, 30% 70%, 
+        35% 60%, 40% 70%, 50% 70%, 55% 50%, 
+        60% 70%, 70% 70%, 75% 60%, 80% 70%, 
+        90% 70%, 95% 60%, 100% 70%, 100% 100%
+    );
+    z-index:1;
 }
 
 /* TEXTO */
 .contenido{
     position:relative;
-    z-index:2;
-    margin-top:10%;
+    z-index:3;
+    margin-top:250px;
     font-size:22px;
     line-height:1.8;
-    text-shadow:0 0 15px #8000ff, 0 0 30px #ff0040;
+    text-shadow:0 0 20px #8000ff, 0 0 30px #ff0040;
     padding:20px;
 }
 
-/* BOTON MUSICA */
+/* BOTON */
 .boton-musica{
     position:fixed;
     bottom:20px;
@@ -52,8 +70,7 @@ body::before{
     cursor:pointer;
     border-radius:30px;
     box-shadow:0 0 20px #8000ff;
-    z-index:3;
-    font-size:16px;
+    z-index:4;
 }
 
 .boton-musica:hover{
@@ -67,9 +84,9 @@ body::before{
     height:3px;
     background:#a64dff;
     border-radius:50%;
-    animation:flotar 12s linear infinite;
+    animation:flotar linear infinite;
     opacity:0.6;
-    z-index:1;
+    z-index:2;
 }
 
 @keyframes flotar{
@@ -81,38 +98,23 @@ body::before{
 .corazon{
     position:absolute;
     color:#ff0040;
-    animation:caer 6s linear infinite;
+    animation:caer linear infinite;
     font-size:20px;
     opacity:0.8;
-    z-index:1;
+    z-index:2;
 }
 
 @keyframes caer{
     from{ transform:translateY(-10vh); }
     to{ transform:translateY(110vh); }
 }
-
-/* NIEBLA */
-.niebla{
-    position:fixed;
-    width:200%;
-    height:100%;
-    background: url("https://i.imgur.com/8QfQ8bT.png");
-    opacity:0.1;
-    animation:moverNiebla 60s linear infinite;
-    z-index:1;
-}
-
-@keyframes moverNiebla{
-    from{ transform:translateX(0); }
-    to{ transform:translateX(-50%); }
-}
 </style>
 </head>
 
 <body>
 
-<div class="niebla"></div>
+<div class="luna"></div>
+<div class="castillo"></div>
 
 <div class="contenido">
 Entre sombras antiguas y suspiros eternos,<br>
@@ -148,16 +150,16 @@ function toggleMusica(){
     }
 }
 
-/* PARTICULAS */
-for(let i=0;i<60;i++){
+/* PARTICULAS ACTIVAS */
+for(let i=0;i<70;i++){
     let p=document.createElement("div");
     p.className="particula";
     p.style.left=Math.random()*100+"vw";
-    p.style.animationDuration=(6+Math.random()*8)+"s";
+    p.style.animationDuration=(6+Math.random()*10)+"s";
     document.body.appendChild(p);
 }
 
-/* CORAZONES */
+/* LLUVIA DE CORAZONES ACTIVA */
 setInterval(()=>{
     let h=document.createElement("div");
     h.className="corazon";
@@ -167,11 +169,13 @@ setInterval(()=>{
     document.body.appendChild(h);
 
     setTimeout(()=>{ h.remove(); },8000);
-},900);
+},700);
 </script>
 
 </body>
 </html>
+
+
 
 
 
