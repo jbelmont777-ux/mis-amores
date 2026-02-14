@@ -1,179 +1,287 @@
-<!DOCTYPE html>
+<!DOCTYPE html> 
 <html lang="es">
 <head>
 <meta charset="UTF-8">
-<title>Oscuridad Eterna</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mis Amores</title>
 
 <style>
 body{
     margin:0;
-    padding:0;
-    overflow:hidden;
-    font-family: 'Georgia', serif;
-    background: radial-gradient(circle at 50% 20%, #2b0033 0%, #0d001a 40%, #000000 80%);
+    min-height:100vh;
+    overflow-x:hidden;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    font-family:'Georgia', serif;
     color:white;
     text-align:center;
+
+    background:
+    linear-gradient(rgba(0,0,0,0.75), rgba(0,0,0,0.85)),
+    url("fondo.jpg"),
+    radial-gradient(circle at 20% 20%, rgba(123,0,255,0.35), transparent 60%),
+    radial-gradient(circle at 80% 80%, rgba(255,0,90,0.25), transparent 60%),
+    linear-gradient(135deg,#0a0015,#1a002a,#000000);
+
+    background-size:cover;
+    background-position:center;
+    background-attachment:fixed;
 }
 
-/* LUNA */
-.luna{
-    position:absolute;
-    top:60px;
-    left:50%;
-    transform:translateX(-50%);
-    width:180px;
-    height:180px;
-    background:radial-gradient(circle, #fff 40%, #ccc 60%, transparent 70%);
-    border-radius:50%;
-    box-shadow:0 0 60px #ffffffaa;
-    z-index:0;
+.title{
+    font-size:clamp(40px,6vw,70px);
+    color:#f3e6ff;
+    text-shadow:0 0 20px #800080, 0 0 40px #ff0055;
+    margin:20px 0;
 }
 
-/* SILUETA CASTILLO */
-.castillo{
-    position:absolute;
-    bottom:0;
-    width:100%;
-    height:200px;
-    background:linear-gradient(to top, #000 60%, transparent);
-    clip-path: polygon(
-        0% 100%, 0% 70%, 5% 70%, 8% 60%, 10% 70%, 
-        15% 70%, 18% 50%, 20% 70%, 30% 70%, 
-        35% 60%, 40% 70%, 50% 70%, 55% 50%, 
-        60% 70%, 70% 70%, 75% 60%, 80% 70%, 
-        90% 70%, 95% 60%, 100% 70%, 100% 100%
-    );
-    z-index:1;
-}
-
-/* TEXTO */
-.contenido{
-    position:relative;
-    z-index:3;
-    margin-top:250px;
-    font-size:22px;
-    line-height:1.8;
-    text-shadow:0 0 20px #8000ff, 0 0 30px #ff0040;
-    padding:20px;
-}
-
-/* BOTON */
-.boton-musica{
-    position:fixed;
-    bottom:20px;
-    left:50%;
-    transform:translateX(-50%);
-    background:#1a001f;
-    border:1px solid #8000ff;
-    color:#fff;
+#musicBtn{
+    margin-bottom:20px;
+    background:#120018;
+    color:#ffffff;
+    border:2px solid #800080;
     padding:12px 25px;
-    cursor:pointer;
     border-radius:30px;
-    box-shadow:0 0 20px #8000ff;
-    z-index:4;
+    cursor:pointer;
+    font-family:Georgia, serif;
+    font-size:16px;
+    box-shadow:0 0 15px #800080;
+    transition:0.3s;
 }
 
-.boton-musica:hover{
-    background:#330033;
+#musicBtn:hover{
+    background:#800080;
+    box-shadow:0 0 25px #ff0055;
+    transform:scale(1.05);
 }
 
-/* PARTICULAS */
-.particula{
-    position:absolute;
-    width:3px;
-    height:3px;
-    background:#a64dff;
-    border-radius:50%;
-    animation:flotar linear infinite;
-    opacity:0.6;
-    z-index:2;
+.roses{
+    display:flex;
+    gap:60px;
+    margin:20px 0;
+}
+
+.rose{
+    font-size:70px;
+    animation: flotar 6s ease-in-out infinite;
 }
 
 @keyframes flotar{
-    from{ transform:translateY(100vh); }
-    to{ transform:translateY(-10vh); }
+    0%,100%{ transform:translateY(0);}
+    50%{ transform:translateY(-20px);}
 }
 
-/* CORAZONES */
-.corazon{
-    position:absolute;
-    color:#ff0040;
-    animation:caer linear infinite;
+.content{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:40px;
+    max-width:1200px;
+    padding:20px;
+}
+
+.photo{
+    width:260px;
+    height:340px;
+    border-radius:20px;
+    overflow:hidden;
+    border:3px solid #800080;
+    box-shadow:0 0 25px #800080, 0 0 50px #ff0055;
+    transition:0.4s;
+}
+
+.photo img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    filter:brightness(0.9) contrast(1.1);
+}
+
+.photo:hover{
+    transform:scale(1.05);
+    box-shadow:0 0 40px #ff00ff, 0 0 80px #ff0055;
+}
+
+.name{
+    margin-top:10px;
     font-size:20px;
-    opacity:0.8;
-    z-index:2;
+    color:#ffd6ff;
+    text-shadow:0 0 10px #ff0055;
+}
+
+.poem{
+    max-width:500px;
+    line-height:1.9;
+    font-size:clamp(16px,3vw,22px);
+    color:#e0ccff;
+    text-shadow:0 0 10px #8b0000;
+}
+
+.question{
+    margin:20px;
+    font-size:clamp(20px,4vw,30px);
+    color:#ffcce6;
+    text-shadow:0 0 15px #ff0055;
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse{
+    0%,100%{transform:scale(1);}
+    50%{transform:scale(1.1);}
+}
+
+@media(max-width:900px){
+    .content{
+        flex-direction:column;
+    }
+
+    .photo{
+        width:80%;
+        max-width:320px;
+        height:auto;
+    }
+
+    .photo img{
+        height:auto;
+    }
+}
+
+.heart{
+    position:fixed;
+    top:-20px;
+    font-size:20px;
+    animation: caer linear infinite;
 }
 
 @keyframes caer{
-    from{ transform:translateY(-10vh); }
-    to{ transform:translateY(110vh); }
+    to{ transform:translateY(110vh);}
+}
+
+.particle{
+    position:fixed;
+    width:5px;
+    height:5px;
+    border-radius:50%;
+    opacity:0.4;
+    animation: float linear infinite;
+}
+
+@keyframes float{
+    from{ transform:translateY(100vh);}
+    to{ transform:translateY(-10vh);}
 }
 </style>
 </head>
 
 <body>
 
-<div class="luna"></div>
-<div class="castillo"></div>
-
-<div class="contenido">
-Entre sombras antiguas y suspiros eternos,<br>
-florecieron dos rosas negras bajo la luna.<br><br>
-
-Valeria, luna que arde en mi sangre callada…<br>
-Lucero, estrella oscura que ilumina mi abismo con ternura eterna.<br><br>
-
-No es pecado… es un pacto sellado en la noche,<br>
-dos almas que encendieron mi eternidad<br>
-con fuego morado y rojo profundo.<br><br>
-
-Intenso… inmortal… eterno. 🖤
-</div>
-
-<button class="boton-musica" onclick="toggleMusica()">Reproducir música</button>
-
-<audio id="musica">
+<audio id="bgMusic" loop>
     <source src="cancion.mp3" type="audio/mpeg">
 </audio>
 
-<script>
-const musica = document.getElementById("musica");
-const boton = document.querySelector(".boton-musica");
+<div class="title">Mis Amores</div>
 
-function toggleMusica(){
-    if(musica.paused){
-        musica.play();
-        boton.innerText="Pausar música";
+<button id="musicBtn" onclick="toggleMusic()">🖤 Activar música</button>
+
+<div class="roses">
+    <div class="rose">❤️</div>
+    <div class="rose">🖤</div>
+    <div class="rose">💜</div>
+</div>
+
+<div class="content">
+
+    <div>
+        <div class="photo">
+            <img src="foto1.jpeg" alt="Valeria">
+        </div>
+        <div class="name">Valeria</div>
+    </div>
+
+    <div class="poem">
+    Entre sombras antiguas donde el tiempo se inclina,<br>
+    sus nombres florecieron como un secreto eterno bajo la luna.<br><br>
+
+    Valeria… eclipse suave que domina mi noche,<br>
+    susurro profundo que habita en mi sangre como un destino escrito en tinta negra.<br><br>
+
+    Lucero… luz serena que brilla en mi penumbra,<br>
+    estrella delicada que guía mis pasos entre la oscuridad más dulce.<br><br>
+
+    No fue casualidad… fue un latido compartido en silencio,<br>
+    dos almas que se encontraron en la sombra<br>
+    y encendieron un fuego púrpura y carmesí.<br><br>
+
+    Si amarles es perderme,<br>
+    que me pierda sin miedo en su mirada.<br><br>
+
+    Porque en esta noche eterna,<br>
+    mi corazón no conoce absolución…<br>
+    solo conoce sus nombres,<br>
+    sus risas,<br>
+    y la promesa de un amor oscuro,<br>
+    profundo,<br>
+    inmortal. 🖤
+    </div>
+
+    <div>
+        <div class="photo">
+            <img src="foto2.jpeg" alt="Lucero">
+        </div>
+        <div class="name">Lucero</div>
+    </div>
+
+</div>
+
+<div class="question">
+¿Quieren ser mis San Valentín? ❤️🖤💜
+</div>
+
+<script>
+function toggleMusic(){
+    let music=document.getElementById("bgMusic");
+    let btn=document.getElementById("musicBtn");
+
+    if(music.paused){
+        music.play();
+        btn.innerHTML="💜 Pausar música";
     }else{
-        musica.pause();
-        boton.innerText="Reproducir música";
+        music.pause();
+        btn.innerHTML="🖤 Activar música";
     }
 }
 
-/* PARTICULAS ACTIVAS */
-for(let i=0;i<70;i++){
-    let p=document.createElement("div");
-    p.className="particula";
-    p.style.left=Math.random()*100+"vw";
-    p.style.animationDuration=(6+Math.random()*10)+"s";
-    document.body.appendChild(p);
+function lluvia(){
+    let heart=document.createElement("div");
+    heart.className="heart";
+    heart.innerHTML="❤";
+    let colors=["#000000","#800080","#ff0055"];
+    heart.style.color=colors[Math.floor(Math.random()*colors.length)];
+    heart.style.left=Math.random()*window.innerWidth+"px";
+    heart.style.animationDuration=(5+Math.random()*4)+"s";
+    document.body.appendChild(heart);
+    setTimeout(()=>heart.remove(),9000);
 }
+setInterval(lluvia,400);
 
-/* LLUVIA DE CORAZONES ACTIVA */
-setInterval(()=>{
-    let h=document.createElement("div");
-    h.className="corazon";
-    h.innerHTML="🖤";
-    h.style.left=Math.random()*100+"vw";
-    h.style.animationDuration=(4+Math.random()*4)+"s";
-    document.body.appendChild(h);
-
-    setTimeout(()=>{ h.remove(); },8000);
-},700);
+function crearParticula(){
+    let p=document.createElement("div");
+    p.className="particle";
+    let colors=["#800080","#ff0055","#ffffff"];
+    p.style.background=colors[Math.floor(Math.random()*colors.length)];
+    p.style.left=Math.random()*window.innerWidth+"px";
+    p.style.animationDuration=(7+Math.random()*6)+"s";
+    document.body.appendChild(p);
+    setTimeout(()=>p.remove(),12000);
+}
+setInterval(crearParticula,250);
 </script>
 
 </body>
 </html>
+
+
 
 
 
