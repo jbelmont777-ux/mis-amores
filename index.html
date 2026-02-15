@@ -173,7 +173,7 @@ html{
     50%{transform:scale(1.1);}
 }
 
-/* ANIMACIÓN DEL MENSAJE FINAL */
+/* MENSAJE FINAL */
 #mensajeFinal {
     display: none;
     position: fixed;
@@ -187,11 +187,11 @@ html{
     z-index: 10000;
     box-shadow: 0 0 50px #ff0055;
     max-width: 600px;
-    animation: aparecer 2s ease-out;
+    animation: aparecer 1.5s ease-out;
 }
 
 @keyframes aparecer {
-    from { opacity: 0; transform: translate(-50%, -40%); filter: blur(10px); }
+    from { opacity: 0; transform: translate(-50%, -60%); filter: blur(10px); }
     to { opacity: 1; transform: translate(-50%, -50%); filter: blur(0); }
 }
 
@@ -221,7 +221,7 @@ html{
 <div id="mensajeFinal">
     <div class="final-text">
         <h2 style="color: #ffcce6; text-shadow: 0 0 15px #ff0055;">¡Mi corazón les pertenece!</h2>
-        <p>En el tejido del tiempo, sus almas son los hilos que le dan sentido a mi existencia. Gracias por aceptar ser parte de mi noche eterna, donde el amor no conoce fin, solo profundidad.</p>
+        <p>En el tejido del tiempo, sus almas son los hilos que le dan sentido a mi existencia. Gracias por aceptar ser parte de mi noche eterna, donde el amor no conoce fin.</p>
         <p style="font-size: 35px;">❤️🖤💜</p>
         <button onclick="document.getElementById('mensajeFinal').style.display='none'" style="background:none; border:1px solid #5c4b2c; color:#5c4b2c; cursor:pointer; padding:5px 15px; border-radius:20px;">Cerrar</button>
     </div>
@@ -305,7 +305,7 @@ html{
         box-shadow:0 0 20px #ff0055;
     ">💜 Sí</button>
 
-    <button id="noBtn" onmouseover="desaparecerNo()" onclick="desaparecerNo()" style="
+    <button id="noBtn" onclick="respuestaNo()" style="
         background:#000000;
         color:white;
         border:2px solid #ff0055;
@@ -338,8 +338,8 @@ function toggleMusic(){
     }
 }
 
-function desaparecerNo(){
-    document.getElementById("noBtn").style.display = "none";
+function respuestaNo(){
+    alert("NETA LE PICASTE QUE NO AMOR... 🥺😭💔😢");
 }
 
 function respuestaSi(){
@@ -391,3 +391,4 @@ setInterval(crearParticula,250);
 
 </body>
 </html>
+
