@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=1200, initial-scale=1.0">
 
 <style>
-/* Pantalla de inicio obligatoria para audio */
+/* Pantalla de inicio */
 #overlay {
     position: fixed;
     top: 0; left: 0; width: 100%; height: 100%;
@@ -17,15 +17,15 @@
 }
 
 #startBtn {
-    background: #800080;
+    background: #120018;
     color: white;
-    border: 2px solid #ff0055;
+    border: 2px solid #5c4b2c; /* Borde dorado como el de Lucero */
     padding: 20px 40px;
     font-size: 24px;
     border-radius: 50px;
     cursor: pointer;
     font-family: 'Georgia', serif;
-    box-shadow: 0 0 30px #800080;
+    box-shadow: 0 0 30px #2e004d;
 }
 
 body{
@@ -63,24 +63,44 @@ html{
     margin:20px 0;
 }
 
-#musicBtn{
-    margin-bottom:20px;
-    background:#120018;
-    color:#ffffff;
-    border:2px solid #800080;
-    padding:12px 25px;
-    border-radius:30px;
-    cursor:pointer;
-    font-family:Georgia, serif;
-    font-size:16px;
-    box-shadow:0 0 15px #800080;
-    transition:0.3s;
+/* BOTÓN ESTILO LUCERO */
+.player-info {
+    margin-bottom: 25px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    background: rgba(0,0,0,0.7);
+    padding: 10px 20px;
+    border-radius: 5px;
+    border: 1px solid #5c4b2c; /* Dorado Viejo */
+    box-shadow: 0 0 15px rgba(0,0,0,0.5);
 }
 
-#musicBtn:hover{
-    background:#800080;
-    box-shadow:0 0 25px #ff0055;
-    transform:scale(1.05);
+#musicToggle {
+    background: none;
+    border: 1px solid #5c4b2c;
+    color: #5c4b2c;
+    cursor: pointer;
+    width: 35px;
+    height: 35px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    transition: 0.3s;
+}
+
+#musicToggle:hover {
+    background: #5c4b2c;
+    color: white;
+}
+
+.song-credits {
+    font-size: 0.85rem;
+    text-align: left;
+    color: #bbb;
+    font-family: 'Georgia', serif;
+    line-height: 1.2;
 }
 
 .roses{
@@ -183,7 +203,6 @@ html{
     to{ transform:translateY(-10vh);}
 }
 
-/* Contenedor para centrar el SI cuando el NO desaparece */
 .buttons-container {
     display: flex;
     justify-content: center;
@@ -206,7 +225,13 @@ html{
 
 <div class="title">Mis Amores</div>
 
-<button id="musicBtn" onclick="toggleMusic()">💜 Pausar música</button>
+<div class="player-info">
+    <button id="musicToggle" onclick="toggleMusic()">⏸</button>
+    <div class="song-credits">
+        Acuerdo Táctico<br>
+        <span style="color:#5c4b2c; font-size: 0.75rem;">Munnin Krouce</span>
+    </div>
+</div>
 
 <div class="roses">
     <div class="rose">❤️</div>
@@ -215,7 +240,6 @@ html{
 </div>
 
 <div class="content">
-
     <div>
         <div class="photo">
             <img src="foto1.jpeg" alt="Valeria">
@@ -255,7 +279,6 @@ html{
         </div>
         <div class="name">Lucero</div>
     </div>
-
 </div>
 
 <div class="question">
@@ -297,13 +320,13 @@ function iniciarRegalo() {
 }
 
 function toggleMusic(){
-    let btn=document.getElementById("musicBtn");
+    let btn=document.getElementById("musicToggle");
     if(music.paused){
         music.play();
-        btn.innerHTML="💜 Pausar música";
+        btn.innerHTML="⏸";
     }else{
         music.pause();
-        btn.innerHTML="🖤 Activar música";
+        btn.innerHTML="▶️";
     }
 }
 
