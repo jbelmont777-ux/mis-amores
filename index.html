@@ -173,33 +173,52 @@ html{
     50%{transform:scale(1.1);}
 }
 
-/* MENSAJE FINAL */
-#mensajeFinal {
+/* MENSAJES DE ALERTA */
+.modal {
     display: none;
     position: fixed;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    background: rgba(18, 0, 24, 0.95);
+    background: rgba(18, 0, 24, 0.98);
     padding: 40px;
     border: 2px solid #5c4b2c;
     border-radius: 15px;
     z-index: 10000;
-    box-shadow: 0 0 50px #ff0055;
     max-width: 600px;
-    animation: aparecer 1.5s ease-out;
+    animation: zoomIn 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
-@keyframes aparecer {
-    from { opacity: 0; transform: translate(-50%, -60%); filter: blur(10px); }
-    to { opacity: 1; transform: translate(-50%, -50%); filter: blur(0); }
+@keyframes zoomIn {
+    from { opacity: 0; transform: translate(-50%, -50%) scale(0.5); }
+    to { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+}
+
+#mensajeTriste {
+    border-color: #ff0055;
+    box-shadow: 0 0 40px #ff0055;
+}
+
+#mensajeFinal {
+    box-shadow: 0 0 50px #800080;
 }
 
 .final-text {
     font-size: 24px;
     line-height: 1.6;
     color: #f3e6ff;
-    text-shadow: 0 0 10px #800080;
+    text-shadow: 0 0 10px #000;
+}
+
+.btn-cerrar {
+    background: none;
+    border: 1px solid #5c4b2c;
+    color: #f3e6ff;
+    cursor: pointer;
+    padding: 8px 20px;
+    border-radius: 20px;
+    margin-top: 20px;
+    font-family: Georgia;
 }
 
 .heart{ position:fixed; top:-20px; font-size:20px; animation: caer linear infinite; }
@@ -218,12 +237,21 @@ html{
     <button id="startBtn" onclick="iniciarRegalo()">Inicia tu regalo</button>
 </div>
 
-<div id="mensajeFinal">
+<div id="mensajeTriste" class="modal">
+    <div class="final-text">
+        <h2 style="color: #ff4d4d;">¡¿NETA LE PICASTE QUE NO AMOR?!</h2>
+        <p style="font-size: 50px;">😢😭💔🥺</p>
+        <p>¡No puedes decirme que no! Mi corazón está sufriendo... Inténtalo de nuevo, pero esta vez con amor. 🖤</p>
+        <button class="btn-cerrar" onclick="cerrarModal('mensajeTriste')">Lo siento, voy a decir que Sí</button>
+    </div>
+</div>
+
+<div id="mensajeFinal" class="modal">
     <div class="final-text">
         <h2 style="color: #ffcce6; text-shadow: 0 0 15px #ff0055;">¡Mi corazón les pertenece!</h2>
-        <p>En el tejido del tiempo, sus almas son los hilos que le dan sentido a mi existencia. Gracias por aceptar ser parte de mi noche eterna, donde el amor no conoce fin.</p>
+        <p>En el tejido del tiempo, sus almas son los hilos que le dan sentido a mi existencia. Gracias por aceptar ser parte de mi noche eterna, donde el amor no conoce fin, solo profundidad.</p>
         <p style="font-size: 35px;">❤️🖤💜</p>
-        <button onclick="document.getElementById('mensajeFinal').style.display='none'" style="background:none; border:1px solid #5c4b2c; color:#5c4b2c; cursor:pointer; padding:5px 15px; border-radius:20px;">Cerrar</button>
+        <button class="btn-cerrar" onclick="cerrarModal('mensajeFinal')">Cerrar con amor</button>
     </div>
 </div>
 
@@ -339,7 +367,11 @@ function toggleMusic(){
 }
 
 function respuestaNo(){
-    alert("NETA LE PICASTE QUE NO AMOR... 🥺😭💔😢");
+    document.getElementById("mensajeTriste").style.display = "block";
+}
+
+function cerrarModal(id){
+    document.getElementById(id).style.display = "none";
 }
 
 function respuestaSi(){
@@ -391,4 +423,5 @@ setInterval(crearParticula,250);
 
 </body>
 </html>
+
 
